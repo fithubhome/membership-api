@@ -7,14 +7,14 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
-public class Membership {
+public class MembershipType {
 
-    private int Id;
+    private int id;
 
     private String name;
 
 
-    public Membership() {
+    public MembershipType() {
 
     }
 }
