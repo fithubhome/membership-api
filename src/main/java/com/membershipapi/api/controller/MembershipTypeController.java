@@ -33,6 +33,6 @@ public class MembershipTypeController {
     @DeleteMapping("/{id}")
     public void deleteMembership(@PathVariable int id)
     {
-        membershipTypeService.deletegit aMembership(id);
+        membershipTypeService.deleteMembership(id);
     }
 }
