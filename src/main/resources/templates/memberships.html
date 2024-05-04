@@ -14,7 +14,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:each="membership : ${memberships}">
+    <tr th:each="membership : ${membershipTypeList}">
         <td th:text="${membership.id}"></td>
         <td th:text="${membership.name}"></td>
     </tr>
@@ -22,7 +22,7 @@
 </table>
 
 <h2>Add Membership</h2>
-<form th:action="@{/memberships/add}" method="post">
+<form th:action="@{/membershipType/add}" method="post">
     <label for="name">Name:</label>
     <input type="text" id="name" name="name" required>
     <button type="submit">Add Membership</button>

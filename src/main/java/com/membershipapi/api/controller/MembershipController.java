@@ -23,15 +23,21 @@ public class MembershipController {
     @GetMapping("")
     public String getAllMemberships(Model model) {
         List<Membership> memberships = membershipService.getAllMemberships();
-        model.addAttribute("memberships", memberships);
+        model.addAttribute("membershipTypeList", memberships);
         return "memberships";
     }
 
     @PostMapping("/add")
     public String addMembership(@RequestParam String name) {
-        Membership membership = new Membership();
-        membership.setName(name);
-        membershipService.createMembership(membership);
+        membershipService.createMembership(name);
         return "redirect:/memberships";
+    }
+
+
+
+    @PostMapping("/deleteById/{membershipId}")
+    public void deleteMembership(@RequestParam int membershipId)
+    {
+        membershipService.deleteMembership(membershipId);
     }
 }

@@ -26,7 +26,9 @@ public class MembershipService {
         return membershipRepository.findById(id).orElse(null);
     }
 
-    public Membership createMembership(Membership membership) {
+    public Membership createMembership(String name) {
+        Membership membership = new Membership();
+        membership.setName(name);
         return membershipRepository.save(membership);
     }
 
