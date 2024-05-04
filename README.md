@@ -1,2 +1,2 @@
-# membership-api
+# membershipType-api
 The memebership API code 

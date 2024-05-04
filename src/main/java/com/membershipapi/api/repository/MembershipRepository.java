@@ -1,6 +1,6 @@
 package com.membershipapi.api.repository;
 
-import com.membershipapi.api.model.Membership;
+import com.membershipapi.api.model.MembershipType;
 import org.springframework.stereotype.Repository;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,31 +9,31 @@ import java.util.Optional;
 @Repository
 public class MembershipRepository {
 
-    private final List<Membership> memberships = new ArrayList<>();
+    private final List<MembershipType> membershipTypes = new ArrayList<>();
     private int nextId = 1;
 
-    public List<Membership> findAll() {
-        return memberships;
+    public List<MembershipType> findAll() {
+        return membershipTypes;
     }
 
-    public Optional<Membership> findById(int id) {
-        return memberships.stream()
-                .filter(membership -> membership.getId() == id)
+    public Optional<MembershipType> findById(int id) {
+        return membershipTypes.stream()
+                .filter(membershipType -> membershipType.getId() == id)
                 .findFirst();
     }
 
-    public Membership save(Membership membership) {
-        if (membership.getId() == 0) {
-            membership.setId(nextId++);
-            memberships.add(membership);
+    public MembershipType save(MembershipType membershipType) {
+        if (membershipType.getId() == 0) {
+            membershipType.setId(nextId++);
+            membershipTypes.add(membershipType);
         } else {
-            memberships.removeIf(m -> m.getId() == membership.getId());
-            memberships.add(membership);
+            membershipTypes.removeIf(m -> m.getId() == membershipType.getId());
+            membershipTypes.add(membershipType);
         }
-        return membership;
+        return membershipType;
     }
 
     public void deleteById(int id) {
-        memberships.removeIf(membership -> membership.getId() == id);
+        membershipTypes.removeIf(membershipType -> membershipType.getId() == id);
     }
 }
