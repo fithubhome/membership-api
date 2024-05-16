@@ -13,8 +13,6 @@ public class MembershipType {
 
     private String name;
 
+    private double price;
 
-    public MembershipType() {
-
-    }
 }
