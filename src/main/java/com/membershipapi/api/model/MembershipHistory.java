@@ -4,23 +4,23 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDate;
 import java.util.Date;
-
+@AllArgsConstructor
 @Setter
 @Getter
-@AllArgsConstructor
 public class MembershipHistory {
 
     private int id;
 
     private int profileId;
 
-    private int membershipType;
+    private String membershipTypeName;
 
-    private Date startDate;
+    private LocalDate startDate;
 
-    private Date endDate;
+    private LocalDate endDate;
 
-    private int payment;
+    private double payment;
 
 }
