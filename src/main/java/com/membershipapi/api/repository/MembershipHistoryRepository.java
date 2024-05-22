@@ -1,15 +1,14 @@
 package com.membershipapi.api.repository;
 
 import com.membershipapi.api.model.MembershipHistory;
-import lombok.Getter;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
 import java.util.List;
 
-@Getter
 @Repository
-public class MembershipHistoryRepository {
-    private final List<MembershipHistory> membershipHistoriesList = new ArrayList<>();
+public interface MembershipHistoryRepository extends JpaRepository<MembershipHistory, Long> {
+    List<MembershipHistory> findByProfileId(int profileId);
 
+    List<MembershipHistory> getMembershipHistoriesList();
 }

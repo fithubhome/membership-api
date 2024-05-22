@@ -6,6 +6,7 @@ import com.membershipapi.api.repository.MembershipHistoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -15,17 +16,15 @@ public class MembershipHistoryService {
     private MembershipHistoryRepository membershipHistoryRepository;
 
     public List<MembershipHistory> viewMembershipHistories() {
-        return membershipHistoryRepository.getMembershipHistoriesList();
+        return membershipHistoryRepository.findAll();
     }
 
     public MembershipHistory addMembershipType(MembershipType membershipType, int profileId) {
-       //TODO :  CHeck if profileID is in the database
-
-
-
-
-
-        // TODO : Check if profile ID has other running memberships
-
+        MembershipHistory membershipHistory = new MembershipHistory();
+        membershipHistory.setProfileId(profileId);
+        membershipHistory.setMembershipType(membershipType);
+        membershipHistory.setStartDate(new Date()); // Set start date to current date
+        // You can add logic to set end date if needed
+        return membershipHistoryRepository.save(membershipHistory);
     }
 }
