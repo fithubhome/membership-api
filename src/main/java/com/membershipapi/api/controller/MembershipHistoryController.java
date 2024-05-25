@@ -1,39 +1,54 @@
 package com.membershipapi.api.controller;
 
 import com.membershipapi.api.model.MembershipHistory;
-import com.membershipapi.api.model.MembershipType;
 import com.membershipapi.api.service.MembershipHistoryService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
-@RequestMapping("/membershipHistory")
+@RequestMapping("/api/membershipHistories")
 public class MembershipHistoryController {
 
     @Autowired
-    private MembershipHistoryService membershipHistoryService;
+    private MembershipHistoryService service;
 
     @GetMapping
-    public ResponseEntity<List<MembershipHistory>> viewMembershipHistories() {
-        List<MembershipHistory> histories = membershipHistoryService.viewMembershipHistories();
-        return ResponseEntity.status(HttpStatus.OK).body(histories);
+    public List<MembershipHistory> getAllMembershipHistories() {
+        return service.getAllMembershipHistories();
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<MembershipHistory> getMembershipHistoryById(@PathVariable Long id) {
+        Optional<MembershipHistory> membershipHistory = service.getMembershipHistoryById(id);
+        if (membershipHistory.isPresent()) {
+            return ResponseEntity.ok(membershipHistory.get());
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @PostMapping
-    public ResponseEntity<MembershipHistory> addMembership(@RequestBody MembershipType membershipType, @RequestParam int profileId) {
-        try {
-            MembershipHistory savedMembership = membershipHistoryService.addMembershipType(membershipType, profileId);
-            // Logging can be done using a logger, assuming you have one configured
-            System.out.println("Membership added successfully for profile ID: " + profileId);
-            return new ResponseEntity<>(savedMembership, HttpStatus.CREATED);
-        } catch (Exception e) {
-            // Logging can be done using a logger, assuming you have one configured
-            System.err.println("Failed to add membership for profile ID: " + profileId + ". Error: " + e.getMessage());
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+    public MembershipHistory createMembershipHistory(@RequestBody MembershipHistory membershipHistory) {
+        return service.createMembershipHistory(membershipHistory);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<MembershipHistory> updateMembershipHistory(@PathVariable Long id, @RequestBody MembershipHistory membershipHistory) {
+        MembershipHistory updatedMembershipHistory = service.updateMembershipHistory(id, membershipHistory);
+        if (updatedMembershipHistory != null) {
+            return ResponseEntity.ok(updatedMembershipHistory);
+        } else {
+            return ResponseEntity.notFound().build();
         }
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteMembershipHistory(@PathVariable Long id) {
+        service.deleteMembershipHistory(id);
+        return ResponseEntity.noContent().build();
     }
 }

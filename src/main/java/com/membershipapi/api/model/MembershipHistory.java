@@ -23,7 +23,7 @@ public class MembershipHistory {
     public MembershipHistory() {
     }
 
-    @Enumerated(EnumType.STRING)
+    @ManyToOne
     private MembershipType membershipType;
 
     private String membershipTypeName;
