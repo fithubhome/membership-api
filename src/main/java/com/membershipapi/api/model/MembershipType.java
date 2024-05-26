@@ -14,9 +14,13 @@ import lombok.Setter;
 @Entity
 public class MembershipType {
 
+
+    public MembershipType() {
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     private String name;
 

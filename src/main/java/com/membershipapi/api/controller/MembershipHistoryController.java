@@ -1,5 +1,6 @@
 package com.membershipapi.api.controller;
 
+import com.membershipapi.api.controller.dto.MembershipHistoryDTO;
 import com.membershipapi.api.model.MembershipHistory;
 import com.membershipapi.api.service.MembershipHistoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/membershipHistories")
+@RequestMapping("/api/membershipHistory")
 public class MembershipHistoryController {
 
     @Autowired
@@ -32,8 +33,10 @@ public class MembershipHistoryController {
     }
 
     @PostMapping
-    public MembershipHistory createMembershipHistory(@RequestBody MembershipHistory membershipHistory) {
-        return service.createMembershipHistory(membershipHistory);
+    public MembershipHistoryDTO createMembershipHistory(@RequestBody MembershipHistoryDTO membershipHistoryDTO) {
+
+       return service.createMembershipHistory(membershipHistoryDTO);
+
     }
 
     @PutMapping("/{id}")

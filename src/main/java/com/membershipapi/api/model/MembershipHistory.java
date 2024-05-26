@@ -5,7 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.LocalDate;
 import java.util.Date;
 @AllArgsConstructor
 @Setter
@@ -26,7 +25,6 @@ public class MembershipHistory {
     @ManyToOne
     private MembershipType membershipType;
 
-    private String membershipTypeName;
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date startDate;

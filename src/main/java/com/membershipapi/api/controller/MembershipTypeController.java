@@ -5,7 +5,6 @@ import com.membershipapi.api.exception.EntityNotFoundException;
 import com.membershipapi.api.model.MembershipType;
 import com.membershipapi.api.service.MembershipTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,8 +31,13 @@ public class MembershipTypeController {
     @GetMapping("/{id}")
     public ResponseEntity<MembershipType> getMembershipType(@PathVariable int id) {
         try {
-            MembershipType membershipType = membershipTypeService.getMembershipById(id);
-            return ResponseEntity.status(200).body(membershipType);
+            Optional<MembershipType> membershipType = membershipTypeService.getMembershipById(id);
+            if(membershipType.isPresent())
+            {
+                return ResponseEntity.status(200).body(membershipType.get());
+            } else
+                return ResponseEntity.notFound().build();
+
         } catch (EntityNotFoundException ex) {
             return ResponseEntity.status(404).body(null);
         }
