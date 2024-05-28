@@ -18,6 +18,7 @@ pipeline {
         }
         stage('Deploy') {
             steps {
+                sh "java -jar target/memebership-api-1.0-SNAPSHOT.jar"
                 echo 'Deploying....'
             }
         }
