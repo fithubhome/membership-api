@@ -18,12 +18,14 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                script {
-                    // Stop previous instance
-                    sh "pkill -f 'java -jar target/memebership-api-1.0-SNAPSHOT.jar' || true"
+                withMaven(maven: 'maven3'){
+                    script {
+                        // Stop previous instance
+                        sh "pkill -f 'java -jar target/memebership-api-1.0-SNAPSHOT.jar' || true"
 
-                    // Deploy new instance
-                    sh "nohup java -jar target/memebership-api-1.0-SNAPSHOT.jar &"
+                        // Deploy new instance
+                        sh "nohup java -jar target/memebership-api-1.0-SNAPSHOT.jar &"
+                    }
                 }
             }
         }
