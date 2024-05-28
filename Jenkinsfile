@@ -18,7 +18,13 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                sh "java -jar target/memebership-api-1.0-SNAPSHOT.jar"
+                script {
+                    // Stop previous instance
+                    sh "pkill -f 'java -jar target/memebership-api-1.0-SNAPSHOT.jar' || true"
+
+                    // Deploy new instance
+                    sh "nohup java -jar target/memebership-api-1.0-SNAPSHOT.jar &"
+                }
             }
         }
     }
