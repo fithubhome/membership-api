@@ -5,7 +5,7 @@ pipeline {
         stage('Build') {
             steps {
                 withMaven(maven: 'maven3') {
-                    sh "mvn clean verify -DskipTests"
+                    sh "mvn clean package"
                 }
             }
         }
@@ -18,7 +18,7 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                echo 'Deploying....'
+                sh "java -jar target/memebership-api-1.0-SNAPSHOT.jar"
             }
         }
     }
