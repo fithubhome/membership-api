@@ -22,4 +22,15 @@ pipeline {
             }
         }
     }
+    post {
+        always {
+            echo 'This is a message for always scenario'
+        }
+        success {
+            echo 'This is a message for success scenario'
+        }
+        failure {
+            echo 'This is a message for failure scenario'
+        }
+    }
 }
