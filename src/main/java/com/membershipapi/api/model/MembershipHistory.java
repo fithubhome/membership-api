@@ -25,13 +25,11 @@ public class MembershipHistory {
     @ManyToOne
     private MembershipType membershipType;
 
-
     @Temporal(TemporalType.TIMESTAMP)
     private Date startDate;
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date endDate;
-
 
     private double payment;
 
