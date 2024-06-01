@@ -1,0 +1,13 @@
+com/membershipapi/common/Logger.class
+com/membershipapi/api/repository/MembershipRepository.class
+com/membershipapi/api/model/MembershipHistory.class
+com/membershipapi/api/controller/MembershipHistoryController.class
+com/membershipapi/api/model/MembershipType.class
+com/membershipapi/api/service/MembershipTypeService.class
+com/membershipapi/api/service/MembershipHistoryService.class
+com/membershipapi/api/config/BeanConfig.class
+com/membershipapi/api/controller/MembershipTypeController.class
+com/membershipapi/api/exception/EntityAllreadyExistsException.class
+com/membershipapi/api/exception/EntityNotFoundException.class
+com/membershipapi/Application.class
+com/membershipapi/api/repository/MembershipHistoryRepository.class
