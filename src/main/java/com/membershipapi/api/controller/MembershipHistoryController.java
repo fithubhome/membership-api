@@ -40,8 +40,9 @@ public class MembershipHistoryController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<MembershipHistory> updateMembershipHistory(@PathVariable Long id, @RequestBody MembershipHistory membershipHistory) {
-        MembershipHistory updatedMembershipHistory = service.updateMembershipHistory(id, membershipHistory);
+    public ResponseEntity<MembershipHistory> updateMembershipHistory(@PathVariable Long id, @RequestBody MembershipHistoryDTO membershipHistoryDTO) {
+
+        MembershipHistory updatedMembershipHistory = service.updateMembershipHistory(id, membershipHistoryDTO);
         if (updatedMembershipHistory != null) {
             return ResponseEntity.ok(updatedMembershipHistory);
         } else {

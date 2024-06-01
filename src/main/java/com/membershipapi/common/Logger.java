@@ -13,3 +13,4 @@ public class Logger {
     public static void logError(String error){
         System.err.println(LocalDateTime.now() + " - " + error);
     }
+}

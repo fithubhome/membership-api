@@ -48,8 +48,14 @@ public class MembershipHistoryService {
 
     }
 
-    public MembershipHistory updateMembershipHistory(Long id, MembershipHistory membershipHistory) {
+    public MembershipHistory updateMembershipHistory(Long id, MembershipHistoryDTO membershipHistoryDTO) {
         if (repository.existsById(id)) {
+
+            MembershipHistory membershipHistory = new MembershipHistory();
+            membershipHistory.setPayment(membershipHistoryDTO.getPayment());
+            membershipHistory.setProfileId(membershipHistoryDTO.getProfileId());
+            membershipHistory.setStartDate(membershipHistoryDTO.getStartDate());
+            membershipHistory.setEndDate(membershipHistoryDTO.getEndDate());
             membershipHistory.setId(id);
             return repository.save(membershipHistory);
         } else {
