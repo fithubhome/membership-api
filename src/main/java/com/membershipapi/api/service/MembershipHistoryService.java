@@ -66,4 +66,8 @@ public class MembershipHistoryService {
     public void deleteMembershipHistory(Long id) {
         repository.deleteById(id);
     }
+
+    public List<MembershipHistory> getMembershipHistoryByProfileId(Long profileId) {
+        return repository.findByProfileId(profileId);
+    }
 }

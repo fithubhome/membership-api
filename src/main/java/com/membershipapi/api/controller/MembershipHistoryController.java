@@ -17,10 +17,6 @@ public class MembershipHistoryController {
     @Autowired
     private MembershipHistoryService service;
 
-    @GetMapping
-    public List<MembershipHistory> getAllMembershipHistories() {
-        return service.getAllMembershipHistories();
-    }
 
     @GetMapping("/{id}")
     public ResponseEntity<MembershipHistory> getMembershipHistoryById(@PathVariable Long id) {
@@ -32,10 +28,21 @@ public class MembershipHistoryController {
         }
     }
 
+    @GetMapping
+    public ResponseEntity<List<MembershipHistory>> getMembershipHistoryByProfileId(@RequestParam(name = "profileId", required = false) Long profileId) {
+        if (profileId == null) {
+            return ResponseEntity.ok(service.getAllMembershipHistories());
+        }
+        List<MembershipHistory> membershipHistory = service.getMembershipHistoryByProfileId(profileId);
+        return ResponseEntity.ok(membershipHistory);
+
+    }
+
+
     @PostMapping
     public MembershipHistoryDTO createMembershipHistory(@RequestBody MembershipHistoryDTO membershipHistoryDTO) {
 
-       return service.createMembershipHistory(membershipHistoryDTO);
+        return service.createMembershipHistory(membershipHistoryDTO);
 
     }
 
