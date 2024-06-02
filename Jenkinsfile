@@ -22,11 +22,16 @@ pipeline {
             steps {
                 withMaven(maven: 'maven3') {
                     // Deploy the application
-                    sh "java -jar /var/jenkins_home/workspace/membership-api_main/target/memebership-api-1.0-SNAPSHOT.jar"
+                    sh "nohup java -jar /var/jenkins_home/workspace/membership-api_main/target/memebership-api-1.0-SNAPSHOT.jar &"
                 }
             }
         }
     }
 
+  post {
+        always {
+            // Clean up after execution
+            cleanWs()
+        }
 
 }
