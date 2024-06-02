@@ -18,7 +18,7 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                withMaven(maven: 'maven3') {
+                withMaven(maven: 'maven3'){
                   sh "nohup java -jar target/memebership-api-1.0-SNAPSHOT.jar &"
                 }
             }
