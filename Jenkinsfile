@@ -21,7 +21,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 // Deploy the application
-                sh "java -jar /var/jenkins_home/workspace/membership-api_main/target/memebership-api-1.0-SNAPSHOT.jar &"
+                sh "nohup java -jar /var/jenkins_home/workspace/membership-api_main/target/memebership-api-1.0-SNAPSHOT.jar &"
             }
         }
     }
