@@ -26,10 +26,5 @@ pipeline {
         }
     }
 
-    post {
-        always {
-            // Clean up after execution
-            cleanWs()
-        }
-    }
+
 }
