@@ -36,7 +36,6 @@ pipeline {
        }
 
 
-
 //        stage('Deploy JAR via SCP') {
 //              steps {
 //                sh """
