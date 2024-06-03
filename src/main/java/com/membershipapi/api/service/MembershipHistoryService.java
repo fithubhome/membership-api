@@ -32,7 +32,7 @@ public class MembershipHistoryService {
 
         MembershipHistory membershipHistory = new MembershipHistory();
         membershipHistory.setPayment(membershipHistoryDTO.getPayment());
-        //MAKE Validation for profileID
+        //MAKE Validation for profileID -
         membershipHistory.setProfileId(membershipHistoryDTO.getProfileId());
         membershipHistory.setStartDate(membershipHistoryDTO.getStartDate());
         membershipHistory.setEndDate(membershipHistoryDTO.getEndDate());

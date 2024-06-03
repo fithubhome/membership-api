@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/membershipHistory")
+@RequestMapping("/membershipHistory")
 public class MembershipHistoryController {
 
     @Autowired
@@ -35,7 +35,6 @@ public class MembershipHistoryController {
         }
         List<MembershipHistory> membershipHistory = service.getMembershipHistoryByProfileId(profileId);
         return ResponseEntity.ok(membershipHistory);
-
     }
 
 

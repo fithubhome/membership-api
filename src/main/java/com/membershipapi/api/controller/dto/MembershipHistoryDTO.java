@@ -14,8 +14,6 @@ public class MembershipHistoryDTO {
 
     private int membershipTypeID;
 
-
-
     private Date startDate;
 
 
