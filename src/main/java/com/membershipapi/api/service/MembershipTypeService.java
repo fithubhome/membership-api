@@ -4,6 +4,7 @@ import com.membershipapi.api.exception.EntityAllreadyExistsException;
 import com.membershipapi.api.exception.EntityNotFoundException;
 import com.membershipapi.api.model.MembershipType;
 import com.membershipapi.api.repository.MembershipRepository;
+import com.membershipapi.api.repository.MembershipTypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,23 +14,33 @@ import java.util.Optional;
 @Service
 public class MembershipTypeService {
 
+    private final MembershipTypeRepository membershipTypeRepository;
+
     private final MembershipRepository membershipRepository;
 
     @Autowired
-    public MembershipTypeService(MembershipRepository membershipRepository) {
+    public MembershipTypeService(MembershipTypeRepository membershipTypeRepository, MembershipRepository membershipRepository) {
+        this.membershipTypeRepository = membershipTypeRepository;
         this.membershipRepository = membershipRepository;
     }
 
     public List<MembershipType> getAllMemberships() {
-        return membershipRepository.findAllMbTypes();
+
+        return membershipTypeRepository.findAll();
     }
 
-    public MembershipType getMembershipById(int id) throws EntityNotFoundException {
-        return membershipRepository.findMbTypeById(id).orElse(null);
+    public Optional<MembershipType> getMembershipById(int id) throws EntityNotFoundException {
+
+        return membershipTypeRepository.findById(id);
     }
 
     public MembershipType createMembership(MembershipType membershipType) throws EntityAllreadyExistsException {
-        return membershipRepository.createMembership(membershipType);
+        List<MembershipType> allTypes =  membershipTypeRepository.findAll();
+        if (allTypes.stream().anyMatch(m -> m.getId() == membershipType.getId())) {
+            throw new EntityAllreadyExistsException(MembershipType.class.getSimpleName());
+        }
+        membershipTypeRepository.save(membershipType);
+        return membershipType;
     }
 
     public MembershipType updateMembership(int id, MembershipType updatedMembershipType) throws EntityNotFoundException {
