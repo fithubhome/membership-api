@@ -1,19 +1,24 @@
 package com.membershipapi.api.model;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.*;
 
 @Getter
 @Setter
 @AllArgsConstructor
-@Entity(name = "membership_type")
+@Entity
+@Table (name = "membership_type")
 
 public class MembershipType {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+// how are IDs  assigned/ generated and unique ? - to check
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @Column(name = "name")
@@ -21,5 +26,6 @@ public class MembershipType {
 
     @Column(name = "price")
     private double price;
+
 
 }
