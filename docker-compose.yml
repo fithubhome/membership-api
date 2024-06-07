@@ -1,0 +1,41 @@
+version: '3.9'
+
+services:
+  mysql:
+    image: mysql:latest
+    container_name: mysql-container
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: mydatabase
+      MYSQL_USER: myuser
+      MYSQL_PASSWORD: mypassword
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+
+volumes:
+  mysql-data:
+
+
+#Run docker:
+#  docker-compose up -d
+
+#  Connect to the Database
+#You can connect to the MySQL database using any MySQL client tool, such as MySQL Workbench, or from the command line:
+#
+#  bash
+#  Copy code
+#  mysql -h 127.0.0.1 -P 3306 -u myuser -p
+
+#OR
+
+#Create a New Connection:
+#
+#  Click on the + button next to MySQL Connections to create a new connection.
+#In the Setup New Connection window, enter the following details:
+#Connection Name: Choose a name for your connection (e.g., MyDockerMySQL).
+#Hostname: 127.0.0.1 or localhost
+#Port: 3306
+#Username: myuser (or whatever you set)
+#Password: Click on Store in Vault... and enter mypassword (or whatever you set)
