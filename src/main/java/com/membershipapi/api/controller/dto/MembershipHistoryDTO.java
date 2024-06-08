@@ -3,7 +3,6 @@ package com.membershipapi.api.controller.dto;
 import com.membershipapi.api.model.MembershipType;
 
 import java.util.Date;
-
 public class MembershipHistoryDTO {
 
     private Long id;
