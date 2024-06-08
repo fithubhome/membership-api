@@ -38,6 +38,7 @@ public class MembershipHistoryController {
     }
 
 
+
     @PostMapping
     public MembershipHistoryDTO createMembershipHistory(@RequestBody MembershipHistoryDTO membershipHistoryDTO) {
         return service.createMembershipHistory(membershipHistoryDTO);

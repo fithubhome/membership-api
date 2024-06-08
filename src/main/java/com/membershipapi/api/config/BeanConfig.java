@@ -6,4 +6,4 @@ import org.springframework.data.repository.query.FluentQuery;
 
 @Configuration
 @EnableJpaRepositories(basePackages = "com.membershipapi.api.repository")
-public class BeanConfig {
+public class BeanConfig {}
