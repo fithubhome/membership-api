@@ -21,6 +21,7 @@ public class MembershipHistoryController {
     @GetMapping("/{id}")
     public ResponseEntity<MembershipHistory> getMembershipHistoryById(@PathVariable Long id) {
         Optional<MembershipHistory> membershipHistory = service.getMembershipHistoryById(id);
+
         if (membershipHistory.isPresent()) {
             return ResponseEntity.ok(membershipHistory.get());
         } else {
@@ -36,7 +37,6 @@ public class MembershipHistoryController {
         List<MembershipHistory> membershipHistory = service.getMembershipHistoryByProfileId(profileId);
         return ResponseEntity.ok(membershipHistory);
     }
-
 
 
     @PostMapping
