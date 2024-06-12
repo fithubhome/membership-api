@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Repository
 @Getter
@@ -15,19 +16,13 @@ public class MembershipRepository {
 
     private final List<MembershipType> membershipTypes = new ArrayList<>();
 
-    public MembershipRepository() {
-        membershipTypes.add(new MembershipType(1, "Gold", 500));
-        membershipTypes.add(new MembershipType(2, "Silver", 200));
-    }
-
-
-    private int nextId = 1;
+//    private int nextId = 1;
 
     public List<MembershipType> findAllMbTypes() {
         return membershipTypes;
     }
 
-    public Optional<MembershipType> findMbTypeById(int id) throws EntityNotFoundException {
+    public Optional<MembershipType> findMbTypeById(UUID id) throws EntityNotFoundException {
 
         Optional<MembershipType> mbType = membershipTypes.stream()
                 .filter(membershipType -> membershipType.getId() == id)
@@ -48,17 +43,14 @@ public class MembershipRepository {
     }
 
     public MembershipType updateMbType(MembershipType membershipType) {
-        if (membershipType.getId() == 0) {
-            membershipType.setId(nextId++);
-            membershipTypes.add(membershipType);
-        } else {
+
             membershipTypes.removeIf(m -> m.getId() == membershipType.getId());
             membershipTypes.add(membershipType);
-        }
+
         return membershipType;
     }
 
-    public void deleteMbTypeById(int id) throws EntityNotFoundException {
+    public void deleteMbTypeById(UUID id) throws EntityNotFoundException {
         boolean isRemoved = membershipTypes.removeIf(membershipType -> membershipType.getId() == id);
 
         if (!isRemoved) {

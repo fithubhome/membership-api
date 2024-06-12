@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/membershipHistory")
@@ -19,7 +20,7 @@ public class MembershipHistoryController {
 
 
     @GetMapping("/{id}")
-    public ResponseEntity<MembershipHistory> getMembershipHistoryById(@PathVariable Long id) {
+    public ResponseEntity<MembershipHistory> getMembershipHistoryById(@PathVariable UUID id) {
         Optional<MembershipHistory> membershipHistory = service.getMembershipHistoryById(id);
         if (membershipHistory.isPresent()) {
             return ResponseEntity.ok(membershipHistory.get());
@@ -29,7 +30,7 @@ public class MembershipHistoryController {
     }
 
     @GetMapping
-    public ResponseEntity<List<MembershipHistory>> getMembershipHistoryByProfileId(@RequestParam(name = "profileId", required = false) Long profileId) {
+    public ResponseEntity<List<MembershipHistory>> getMembershipHistoryByProfileId(@RequestParam(name = "profileId", required = false) UUID profileId) {
         if (profileId == null) {
             return ResponseEntity.ok(service.getAllMembershipHistories());
         }
@@ -44,7 +45,7 @@ public class MembershipHistoryController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<MembershipHistory> updateMembershipHistory(@PathVariable Long id, @RequestBody MembershipHistoryDTO membershipHistoryDTO) {
+    public ResponseEntity<MembershipHistory> updateMembershipHistory(@PathVariable UUID id, @RequestBody MembershipHistoryDTO membershipHistoryDTO) {
 
         MembershipHistory updatedMembershipHistory = service.updateMembershipHistory(id, membershipHistoryDTO);
         if (updatedMembershipHistory != null) {
@@ -55,7 +56,7 @@ public class MembershipHistoryController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteMembershipHistory(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteMembershipHistory(@PathVariable UUID id) {
         service.deleteMembershipHistory(id);
         return ResponseEntity.noContent().build();
     }

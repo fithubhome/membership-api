@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class MembershipTypeService {
@@ -29,7 +30,7 @@ public class MembershipTypeService {
         return membershipTypeRepository.findAll();
     }
 
-    public Optional<MembershipType> getMembershipById(int id) throws EntityNotFoundException {
+    public Optional<MembershipType> getMembershipById(UUID id) throws EntityNotFoundException {
 
         return membershipTypeRepository.findById(id);
     }
@@ -43,7 +44,7 @@ public class MembershipTypeService {
         return membershipType;
     }
 
-    public MembershipType updateMembership(int id, MembershipType updatedMembershipType) throws EntityNotFoundException {
+    public MembershipType updateMembership(UUID id, MembershipType updatedMembershipType) throws EntityNotFoundException {
         Optional<MembershipType> existingMembershipOptional = membershipRepository.findMbTypeById(id);
         if (existingMembershipOptional.isPresent()) {
             MembershipType existingMembershipType = existingMembershipOptional.get();
@@ -56,7 +57,7 @@ public class MembershipTypeService {
         }
     }
 
-    public void deleteMembership(int id) throws EntityNotFoundException {
+    public void deleteMembership(UUID id) throws EntityNotFoundException {
         membershipRepository.deleteMbTypeById(id);
     }
 }

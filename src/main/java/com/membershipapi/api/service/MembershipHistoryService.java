@@ -8,8 +8,10 @@ import com.membershipapi.api.repository.MembershipTypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class MembershipHistoryService {
@@ -24,7 +26,7 @@ public class MembershipHistoryService {
         return repository.findAll();
     }
 
-    public Optional<MembershipHistory> getMembershipHistoryById(Long id) {
+    public Optional<MembershipHistory> getMembershipHistoryById(UUID id) {
         return repository.findById(id);
     }
 
@@ -48,7 +50,7 @@ public class MembershipHistoryService {
 
     }
 
-    public MembershipHistory updateMembershipHistory(Long id, MembershipHistoryDTO membershipHistoryDTO) {
+    public MembershipHistory updateMembershipHistory(UUID id, MembershipHistoryDTO membershipHistoryDTO) {
         if (repository.existsById(id)) {
 
             MembershipHistory membershipHistory = new MembershipHistory();
@@ -63,11 +65,13 @@ public class MembershipHistoryService {
         }
     }
 
-    public void deleteMembershipHistory(Long id) {
+    public void deleteMembershipHistory(UUID id) {
         repository.deleteById(id);
     }
 
-    public List<MembershipHistory> getMembershipHistoryByProfileId(Long profileId) {
+
+    public List<MembershipHistory> getMembershipHistoryByProfileId(UUID profileId) {
         return repository.findByProfileId(profileId);
+//        return repository.findAllById(Collections.singleton(profileId)); -> in this method I have  commented the line in MembershipHistoryRepository
     }
 }

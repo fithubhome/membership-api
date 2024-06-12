@@ -6,7 +6,7 @@ services:
     restart: unless-stopped
 #    env_file: ./.env
     environment:
-      - MYSQL_ROOT_PASSWORD=admin
+      - MYSQL_ROOT_PASSWORD=password
       - MYSQL_DATABASE=memberships
     ports:
       - "3308:3306"
