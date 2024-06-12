@@ -1,0 +1,3 @@
+--  WARNING: Rename this file to "schema.sql" before use
+--  PURPOSE: Use this file for fine-grained manual SQL DDL operations at startup (i.e. altering the schema)
+--  EXAMPLE: "CREATE TABLE IF NOT EXISTS ..."

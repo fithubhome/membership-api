@@ -1,17 +1,33 @@
-version: "3.8"
+version: '3'
 
 services:
-  mysqldb:
-    image: mysql:latest
-    restart: unless-stopped
-#    env_file: ./.env
-    environment:
+
+  membership-api-app:
+    build: .                          # Use Dockerfile to build image
+    image: membership-api:latest      # Name of the resulting image
+    container_name: application       # Name of the resulting container
+    ports:                            # External/internal port mapping:
+      - 8085:8085
+    depends_on:                       # Service(s) that this service depends on:
+      membership-api-db:
+          condition: service_healthy
+    networks:                         # Local network for services (containers)
+      - network
+
+  membership-api-db:
+    image: mysql:latest               # Image used to create container (from Docker registry)
+    container_name: database
+    ports:
+      - 3306:3306
+    environment:                      # Environment variables for the service (container):
       - MYSQL_ROOT_PASSWORD=password
       - MYSQL_DATABASE=memberships
-    ports:
-      - 3307:3306
-    volumes:
-      - db:/var/lib/mysql
+    healthcheck:                      # Command that, when ran, proves service (container) is healthy
+      test: [ "CMD", "echo", "MySQL database container is healthy" ]
+    networks:
+      - network
 
-volumes:
-  db:
+networks:
+
+  network:
+    driver: bridge

@@ -1,0 +1,3 @@
+--  WARNING: Rename this file to "data.sql" before use
+--  PURPOSE: Use this file for fine-grained manual SQL DML operations at startup (i.e. seeding the database)
+--  EXAMPLE: "INSERT INTO ..."

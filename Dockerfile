@@ -1,8 +1,3 @@
-# FROM maven:3.8.2-jdk-8 # for Java 8
-FROM maven:3.8.5-openjdk-17
-
-WORKDIR /bezkoder-app
-COPY . .
-RUN mvn clean install
-
-CMD mvn spring-boot:run
+FROM openjdk:17-jdk-alpine
+COPY target/membership-api-1.0-SNAPSHOT.jar app/app.jar
+ENTRYPOINT ["java","-jar","/app/app.jar"]
