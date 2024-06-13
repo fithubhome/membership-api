@@ -17,8 +17,6 @@ services:
   membership-api-db:
     image: mysql:latest               # Image used to create container (from Docker registry)
     container_name: database
-    ports:
-      - 3306:3306
     environment:                      # Environment variables for the service (container):
       - MYSQL_ROOT_PASSWORD=password
       - MYSQL_DATABASE=memberships
