@@ -1,25 +1,37 @@
 package com.membershipapi.api.model;
 
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
 import java.util.Date;
+
 @AllArgsConstructor
 @Setter
 @Getter
+@Entity
 public class MembershipHistory {
 
-    private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
 
     private int profileId;
 
-    private String membershipTypeName;
+    public MembershipHistory() {
+    }
 
-    private LocalDate startDate;
+    @ManyToOne
+    private MembershipType membershipType;
 
-    private LocalDate endDate;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date startDate;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date endDate;
 
     private double payment;
 
