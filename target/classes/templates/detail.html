@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Membership History Detail</title>
+</head>
+<body>
+<h1>Membership History Detail</h1>
+<p>ID: <span th:text="${membershipHistory.id}">ID</span></p>
+<p>Profile ID: <span th:text="${membershipHistory.profileId}">Profile ID</span></p>
+<p>Membership Type: <span th:text="${membershipHistory.membershipType}">Membership Type</span></p>
+<p>Start Date: <span th:text="${membershipHistory.startDate}">Start Date</span></p>
+<p>End Date: <span th:text="${membershipHistory.endDate}">End Date</span></p>
+<a th:href="@{/membershipHistory/{id}/edit(id=${membershipHistory.id})}">Edit</a>
+<a th:href="@{/membershipHistory}" onclick="return confirm('Are you sure?')">Delete</a>
+<a href="/membershipHistory">Back to list</a>
+</body>
+</html>

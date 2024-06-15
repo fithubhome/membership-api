@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Create/Update Membership History</title>
+</head>
+<body>
+<h1>Create/Update Membership History</h1>
+<form th:action="@{/membershipHistory}" th:method="post" th:object="${membershipHistoryDTO}">
+    <input type="hidden" th:field="*{id}">
+    <label for="profileId">Profile ID:</label>
+    <input type="text" id="profileId" th:field="*{profileId}">
+    <br>
+    <label for="membershipType">Membership Type:</label>
+    <input type="text" id="membershipType" th:field="*{membershipType}">
+    <br>
+    <label for="startDate">Start Date:</label>
+    <input type="date" id="startDate" th:field="*{startDate}">
+    <br>
+    <label for="endDate">End Date:</label>
+    <input type="date" id="endDate" th:field="*{endDate}">
+    <br>
+    <button type="submit">Save</button>
+</form>
+<a href="/membershipHistory">Back to list</a>
+</body>
+</html>
