@@ -4,6 +4,7 @@ import com.membershipapi.api.exception.EntityAllreadyExistsException;
 import com.membershipapi.api.exception.EntityNotFoundException;
 import com.membershipapi.api.model.MembershipType;
 import lombok.Getter;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +15,8 @@ import java.util.UUID;
 @Getter
 public class MembershipRepository {
 
+    @Autowired
+    private MembershipTypeRepository membershipTypeRepository;
     private final List<MembershipType> membershipTypes = new ArrayList<>();
 
 //    private int nextId = 1;
@@ -25,7 +28,7 @@ public class MembershipRepository {
     public Optional<MembershipType> findMbTypeById(UUID id) throws EntityNotFoundException {
 
         Optional<MembershipType> mbType = membershipTypes.stream()
-                .filter(membershipType -> membershipType.getId() == id)
+                .filter(membershipType -> membershipType.getId().equals(id))
                 .findFirst();
         if (mbType.isEmpty()) {
             throw new EntityNotFoundException(MembershipType.class.getSimpleName());
@@ -50,12 +53,5 @@ public class MembershipRepository {
         return membershipType;
     }
 
-    public void deleteMbTypeById(UUID id) throws EntityNotFoundException {
-        boolean isRemoved = membershipTypes.removeIf(membershipType -> membershipType.getId() == id);
 
-        if (!isRemoved) {
-            throw new EntityNotFoundException(MembershipType.class.getSimpleName());
-        }
-
-    }
 }

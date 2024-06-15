@@ -58,6 +58,10 @@ public class MembershipTypeService {
     }
 
     public void deleteMembership(UUID id) throws EntityNotFoundException {
-        membershipRepository.deleteMbTypeById(id);
+        if (membershipTypeRepository.existsById(id)) {
+            membershipTypeRepository.deleteById(id);
+        } else {
+            throw new EntityNotFoundException(MembershipType.class.getSimpleName());
+        }
     }
 }
