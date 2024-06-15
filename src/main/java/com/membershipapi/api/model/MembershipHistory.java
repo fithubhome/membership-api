@@ -3,12 +3,14 @@ package com.membershipapi.api.model;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
 import java.util.Date;
 
 @AllArgsConstructor
+@NoArgsConstructor
 @Setter
 @Getter
 @Entity
@@ -18,11 +20,7 @@ public class MembershipHistory {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-
     private int profileId;
-
-    public MembershipHistory() {
-    }
 
     @ManyToOne
     private MembershipType membershipType;

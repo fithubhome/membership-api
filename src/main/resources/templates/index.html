@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Membership History</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<h1>Membership History</h1>
+
+<div id="getById">
+    <h2>Get Membership History by ID</h2>
+    <input type="text" id="membershipId" placeholder="Enter ID">
+    <button onclick="getMembershipHistoryById()">Get Membership History</button>
+    <pre id="resultById"></pre>
+</div>
+
+<div id="getByProfileId">
+    <h2>Get Membership History by Profile ID</h2>
+    <input type="text" id="profileId" placeholder="Enter Profile ID">
+    <button onclick="getMembershipHistoryByProfileId()">Get Membership History</button>
+    <pre id="resultByProfileId"></pre>
+</div>
+
+<div id="create">
+    <h2>Create Membership History</h2>
+    <input type="text" id="createProfileId" placeholder="Enter Profile ID">
+    <input type="text" id="createDetails" placeholder="Enter Details">
+    <button onclick="createMembershipHistory()">Create</button>
+    <pre id="createResult"></pre>
+</div>
+
+<div id="update">
+    <h2>Update Membership History</h2>
+    <input type="text" id="updateId" placeholder="Enter ID">
+    <input type="text" id="updateProfileId" placeholder="Enter Profile ID">
+    <input type="text" id="updateDetails" placeholder="Enter Details">
+    <button onclick="updateMembershipHistory()">Update</button>
+    <pre id="updateResult"></pre>
+</div>
+
+<div id="delete">
+    <h2>Delete Membership History</h2>
+    <input type="text" id="deleteId" placeholder="Enter ID">
+    <button onclick="deleteMembershipHistory()">Delete</button>
+    <pre id="deleteResult"></pre>
+</div>
+
+<script src="scripts.js"></script>
+</body>
+</html>

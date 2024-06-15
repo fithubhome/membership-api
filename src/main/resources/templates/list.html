@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Membership List</title>
+</head>
+<body>
+<h1>Membership List</h1>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Description</th>
+    </tr>
+    <tr th:each="membership : ${memberships}">
+        <td th:text="${membership.id}">ID</td>
+        <td th:text="${membership.name}">Name</td>
+        <td th:text="${membership.description}">Description</td>
+        <td><a th:href="@{/memberships/{id}(id=${membership.id})}">Details</a></td>
+    </tr>
+</table>
+</body>
+</html>
