@@ -11,7 +11,7 @@ import java.util.UUID;
 public class MembershipHistoryDTO {
 
     private UUID id;
-    private int profileId;
+    private UUID profileId;
     private UUID membershipTypeID;
     private Date startDate;
     private Date endDate;

@@ -24,7 +24,7 @@ public class MembershipHistory {
     @JdbcTypeCode(Types.VARCHAR)
     private UUID id;
 
-    private int profileId;
+    private UUID profileId;
 
     @ManyToOne
     private MembershipType membershipType;
