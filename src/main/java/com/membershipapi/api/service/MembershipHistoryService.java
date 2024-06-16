@@ -1,6 +1,7 @@
 package com.membershipapi.api.service;
 
 import com.membershipapi.api.controller.dto.MembershipHistoryDTO;
+import com.membershipapi.api.exception.EntityNotFoundException;
 import com.membershipapi.api.model.MembershipHistory;
 import com.membershipapi.api.model.MembershipType;
 import com.membershipapi.api.repository.MembershipHistoryRepository;
@@ -50,18 +51,20 @@ public class MembershipHistoryService {
 
     }
 
-    public MembershipHistory updateMembershipHistory(UUID id, MembershipHistoryDTO membershipHistoryDTO) {
-        if (repository.existsById(id)) {
+    public MembershipHistory updateMembershipHistory(MembershipHistoryDTO membershipHistoryDTO) throws EntityNotFoundException {
+        if (repository.existsById(membershipHistoryDTO.getId())) {
+            repository.deleteById(membershipHistoryDTO.getId());
 
             MembershipHistory membershipHistory = new MembershipHistory();
-            membershipHistory.setPayment(membershipHistoryDTO.getPayment());
             membershipHistory.setProfileId(membershipHistoryDTO.getProfileId());
             membershipHistory.setStartDate(membershipHistoryDTO.getStartDate());
             membershipHistory.setEndDate(membershipHistoryDTO.getEndDate());
-            membershipHistory.setId(id);
+            membershipHistory.setPayment(membershipHistoryDTO.getPayment());
+
             return repository.save(membershipHistory);
+
         } else {
-            return null;
+            throw new EntityNotFoundException(getClass().getSimpleName());
         }
     }
 
@@ -72,6 +75,7 @@ public class MembershipHistoryService {
 
     public List<MembershipHistory> getMembershipHistoryByProfileId(UUID profileId) {
         return repository.findByProfileId(profileId);
-//        return repository.findAllById(Collections.singleton(profileId)); -> in this method I have  commented the line in MembershipHistoryRepository
     }
+
+
 }

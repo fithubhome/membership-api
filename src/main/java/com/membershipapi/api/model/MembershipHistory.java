@@ -37,4 +37,5 @@ public class MembershipHistory {
 
     private double payment;
 
+
 }

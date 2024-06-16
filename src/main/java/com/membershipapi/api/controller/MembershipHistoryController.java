@@ -1,6 +1,7 @@
 package com.membershipapi.api.controller;
 
 import com.membershipapi.api.controller.dto.MembershipHistoryDTO;
+import com.membershipapi.api.exception.EntityNotFoundException;
 import com.membershipapi.api.model.MembershipHistory;
 import com.membershipapi.api.service.MembershipHistoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,12 +17,11 @@ import java.util.UUID;
 public class MembershipHistoryController {
 
     @Autowired
-    private MembershipHistoryService service;
-
+    private MembershipHistoryService membershipHistoryService;
 
     @GetMapping("/{id}")
     public ResponseEntity<MembershipHistory> getMembershipHistoryById(@PathVariable UUID id) {
-        Optional<MembershipHistory> membershipHistory = service.getMembershipHistoryById(id);
+        Optional<MembershipHistory> membershipHistory = membershipHistoryService.getMembershipHistoryById(id);
         if (membershipHistory.isPresent()) {
             return ResponseEntity.ok(membershipHistory.get());
         } else {
@@ -32,32 +32,31 @@ public class MembershipHistoryController {
     @GetMapping
     public ResponseEntity<List<MembershipHistory>> getMembershipHistoryByProfileId(@RequestParam(name = "profileId", required = false) UUID profileId) {
         if (profileId == null) {
-            return ResponseEntity.ok(service.getAllMembershipHistories());
+            return ResponseEntity.ok(membershipHistoryService.getAllMembershipHistories());
         }
-        List<MembershipHistory> membershipHistory = service.getMembershipHistoryByProfileId(profileId);
+        List<MembershipHistory> membershipHistory = membershipHistoryService.getMembershipHistoryByProfileId(profileId);
         return ResponseEntity.ok(membershipHistory);
     }
 
-
+//__________TO REVIEW_________________
     @PostMapping
     public MembershipHistoryDTO createMembershipHistory(@RequestBody MembershipHistoryDTO membershipHistoryDTO) {
-        return service.createMembershipHistory(membershipHistoryDTO);
+        return membershipHistoryService.createMembershipHistory(membershipHistoryDTO);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<MembershipHistory> updateMembershipHistory(@PathVariable UUID id, @RequestBody MembershipHistoryDTO membershipHistoryDTO) {
-
-        MembershipHistory updatedMembershipHistory = service.updateMembershipHistory(id, membershipHistoryDTO);
-        if (updatedMembershipHistory != null) {
+    public ResponseEntity<MembershipHistory> updateMembershipHistory(@RequestBody MembershipHistoryDTO membershipHistoryDTO) {
+        try {
+            MembershipHistory updatedMembershipHistory = membershipHistoryService.updateMembershipHistory(membershipHistoryDTO);
             return ResponseEntity.ok(updatedMembershipHistory);
-        } else {
-            return ResponseEntity.notFound().build();
+        } catch (EntityNotFoundException ex){
+            return ResponseEntity.status(404).body(null);
         }
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteMembershipHistory(@PathVariable UUID id) {
-        service.deleteMembershipHistory(id);
+        membershipHistoryService.deleteMembershipHistory(id);
         return ResponseEntity.noContent().build();
     }
 }

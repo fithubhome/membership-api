@@ -2,7 +2,6 @@
 /Users/paulioanalbu/Desktop/ITeaHome/membership-api/src/main/java/com/membershipapi/api/controller/MembershipTypeController.java
 /Users/paulioanalbu/Desktop/ITeaHome/membership-api/src/main/java/com/membershipapi/api/service/MembershipTypeService.java
 /Users/paulioanalbu/Desktop/ITeaHome/membership-api/src/main/java/com/membershipapi/api/repository/MembershipTypeRepository.java
-/Users/paulioanalbu/Desktop/ITeaHome/membership-api/src/main/java/com/membershipapi/api/repository/MembershipRepository.java
 /Users/paulioanalbu/Desktop/ITeaHome/membership-api/src/main/java/com/membershipapi/api/controller/dto/MembershipHistoryDTO.java
 /Users/paulioanalbu/Desktop/ITeaHome/membership-api/src/main/java/com/membershipapi/api/controller/MembershipHistoryController.java
 /Users/paulioanalbu/Desktop/ITeaHome/membership-api/src/main/java/com/membershipapi/api/service/MembershipHistoryService.java

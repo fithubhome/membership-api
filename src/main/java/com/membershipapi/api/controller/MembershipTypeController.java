@@ -14,8 +14,8 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/membershipType")
-public class MembershipTypeController {
 
+public class MembershipTypeController {
     private final MembershipTypeService membershipTypeService;
 
     @Autowired

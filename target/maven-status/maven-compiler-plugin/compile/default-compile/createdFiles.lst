@@ -1,5 +1,4 @@
 com/membershipapi/common/Logger.class
-com/membershipapi/api/repository/MembershipRepository.class
 com/membershipapi/api/model/MembershipHistory.class
 com/membershipapi/api/controller/dto/MembershipHistoryDTO.class
 com/membershipapi/api/controller/MembershipHistoryController.class
