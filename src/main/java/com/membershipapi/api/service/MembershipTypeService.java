@@ -3,27 +3,19 @@ package com.membershipapi.api.service;
 import com.membershipapi.api.exception.EntityAllreadyExistsException;
 import com.membershipapi.api.exception.EntityNotFoundException;
 import com.membershipapi.api.model.MembershipType;
-import com.membershipapi.api.repository.MembershipRepository;
 import com.membershipapi.api.repository.MembershipTypeRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+@AllArgsConstructor
 @Service
 public class MembershipTypeService {
 
     private final MembershipTypeRepository membershipTypeRepository;
-
-    private final MembershipRepository membershipRepository;
-
-    @Autowired
-    public MembershipTypeService(MembershipTypeRepository membershipTypeRepository, MembershipRepository membershipRepository) {
-        this.membershipTypeRepository = membershipTypeRepository;
-        this.membershipRepository = membershipRepository;
-    }
 
     public List<MembershipType> getAllMemberships() {
 
@@ -44,17 +36,16 @@ public class MembershipTypeService {
         return membershipType;
     }
 
-    public MembershipType updateMembership(UUID id, MembershipType updatedMembershipType) throws EntityNotFoundException {
-        Optional<MembershipType> existingMembershipOptional = membershipRepository.findMbTypeById(id);
-        if (existingMembershipOptional.isPresent()) {
-            MembershipType existingMembershipType = existingMembershipOptional.get();
-            existingMembershipType.setName(updatedMembershipType.getName());
-            existingMembershipType.setPrice(updatedMembershipType.getPrice());
 
-            return existingMembershipType;
-        } else {
-            return null; // Handle error - membership not found
+    public MembershipType updateMembership(UUID id, MembershipType updatedMembershipType) throws EntityNotFoundException {
+
+        if (!membershipTypeRepository.existsById(id)) {
+            throw new EntityNotFoundException(MembershipType.class.getSimpleName());
         }
+
+        membershipTypeRepository.deleteById(id);
+        membershipTypeRepository.save(updatedMembershipType);
+        return updatedMembershipType;
     }
 
     public void deleteMembership(UUID id) throws EntityNotFoundException {
