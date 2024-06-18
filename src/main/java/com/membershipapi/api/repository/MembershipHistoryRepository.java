@@ -6,9 +6,10 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Repository
-public interface MembershipHistoryRepository extends JpaRepository<MembershipHistory, Long> {
+public interface MembershipHistoryRepository extends JpaRepository<MembershipHistory, UUID> {
 
-    List<MembershipHistory> findByProfileId(Long profileId);
+    List<MembershipHistory> findByProfileId(UUID profileId);
 }
