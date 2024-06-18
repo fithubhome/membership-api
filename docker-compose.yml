@@ -1,4 +1,4 @@
-version: "3.8"
+version: "3.9"
 
 services:
   mysqldb:
@@ -9,7 +9,7 @@ services:
       - MYSQL_ROOT_PASSWORD=password
       - MYSQL_DATABASE=memberships
     ports:
-      - 3307:3306
+      - "3306:3306"
     volumes:
       - db:/var/lib/mysql
 

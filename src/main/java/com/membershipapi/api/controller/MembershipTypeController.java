@@ -10,11 +10,12 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/membershipType")
-public class MembershipTypeController {
 
+public class MembershipTypeController {
     private final MembershipTypeService membershipTypeService;
 
     @Autowired
@@ -29,7 +30,7 @@ public class MembershipTypeController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<MembershipType> getMembershipType(@PathVariable int id) {
+    public ResponseEntity<MembershipType> getMembershipType(@PathVariable UUID id) {
         try {
             Optional<MembershipType> membershipType = membershipTypeService.getMembershipById(id);
             if(membershipType.isPresent())
@@ -67,7 +68,7 @@ public class MembershipTypeController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteMembership(@PathVariable int id) {
+    public ResponseEntity<String> deleteMembership(@PathVariable UUID id) {
         try {
             membershipTypeService.deleteMembership(id);
             return ResponseEntity.ok(null);
