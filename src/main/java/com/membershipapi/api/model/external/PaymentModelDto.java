@@ -48,6 +48,9 @@ public class PaymentModelDto {
     @Column(nullable = false)
     private LocalDate endDate = LocalDate.now().plusDays(30);
 
+    @Column(nullable = false)
+    private String membershipName;
+
 
     public enum PaymentStatusEnum {
         PENDING,
