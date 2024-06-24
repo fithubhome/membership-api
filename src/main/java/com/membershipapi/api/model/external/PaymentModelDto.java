@@ -9,6 +9,7 @@ import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.JdbcTypeCode;
 
 import java.sql.Types;
+import java.time.LocalDate;
 import java.time.YearMonth;
 import java.util.UUID;
 
@@ -28,18 +29,25 @@ public class PaymentModelDto {
     @JdbcTypeCode(Types.VARCHAR)
     private UUID databaseID;
 
+    @JdbcTypeCode(Types.VARCHAR)
     private UUID profileID;
+
+    @JdbcTypeCode(Types.VARCHAR)
     private UUID selectedMembershipId;
-//    private String personName;
-//    private String cardNr;
-//    private String cvc;
-//    private YearMonth cardExpirationDate;
+
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private PaymentStatusEnum status;
+
+    @Column(nullable = false)
     private Double price;
-//    private LocalDate startDate = LocalDate.now();
-//    private LocalDate endDate = LocalDate.now().plusDays(30);
+
+    @Column(nullable = false)
+    private LocalDate startDate = LocalDate.now();
+
+    @Column(nullable = false)
+    private LocalDate endDate = LocalDate.now().plusDays(30);
+
 
     public enum PaymentStatusEnum {
         PENDING,
