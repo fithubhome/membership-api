@@ -11,7 +11,7 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/addpayment")
-public class PaymentController {
+public class MembershipHistoryController {
     @Autowired
     PaymentService paymentService;
 
