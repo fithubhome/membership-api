@@ -18,7 +18,7 @@ public class PaymentController {
     @PostMapping
     public void addPayment(@RequestBody PaymentModelDto paymentModelDto) {
 
-            paymentService.savePaymentIntoMbHistoryPaymentRepo(paymentModelDto);
+        paymentService.savePaymentIntoMbHistoryPaymentRepo(paymentModelDto);
 
         //add Exception
     }
