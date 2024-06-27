@@ -17,7 +17,13 @@ public class MembershipTypeService {
 
     private final MembershipTypeRepository membershipTypeRepository;
 
-    public List<MembershipType> getAllMemberships() {
+    public List<MembershipType> getAllMemberships() throws EntityAllreadyExistsException {
+        List<MembershipType> newList = membershipTypeRepository.findAll();
+        if(newList.isEmpty()){
+            createMembership(new MembershipType(UUID.randomUUID(), "Gold", 50));
+            createMembership(new MembershipType(UUID.randomUUID(), "Silver", 25));
+            createMembership(new MembershipType(UUID.randomUUID(), "Bronze", 10));
+        }
 
         return membershipTypeRepository.findAll();
     }

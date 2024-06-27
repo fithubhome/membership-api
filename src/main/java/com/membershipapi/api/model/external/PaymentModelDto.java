@@ -51,7 +51,6 @@ public class PaymentModelDto {
     @Column(nullable = false)
     private String membershipName;
 
-
     public enum PaymentStatusEnum {
         PENDING,
         PAID;

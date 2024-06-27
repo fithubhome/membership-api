@@ -24,7 +24,7 @@ public class MembershipTypeController {
     }
 
     @GetMapping
-    public ResponseEntity<List<MembershipType>> getAllMembershipTypes() {
+    public ResponseEntity<List<MembershipType>> getAllMembershipTypes() throws EntityAllreadyExistsException {
         List<MembershipType> membershipTypeTypes = membershipTypeService.getAllMemberships();
         return ResponseEntity.status(200).body(membershipTypeTypes);
     }
