@@ -33,8 +33,7 @@ public class MembershipTypeController {
     public ResponseEntity<MembershipType> getMembershipType(@PathVariable UUID id) {
         try {
             Optional<MembershipType> membershipType = membershipTypeService.getMembershipById(id);
-            if(membershipType.isPresent())
-            {
+            if (membershipType.isPresent()) {
                 return ResponseEntity.status(200).body(membershipType.get());
             } else
                 return ResponseEntity.notFound().build();
@@ -48,7 +47,7 @@ public class MembershipTypeController {
     public ResponseEntity<MembershipType> createMembership(@RequestBody MembershipType membershipType) {
         MembershipType membershipTypeStatus;
         try {
-         membershipTypeStatus =   membershipTypeService.createMembership(membershipType);
+            membershipTypeStatus = membershipTypeService.createMembership(membershipType);
         } catch (EntityAllreadyExistsException ex) {
             return ResponseEntity.status(404).body(null);
         }
@@ -59,7 +58,7 @@ public class MembershipTypeController {
     public ResponseEntity<MembershipType> updateMembership(@RequestBody MembershipType membershipType) {
         MembershipType mbTypeStatus;
         try {
-            mbTypeStatus =membershipTypeService.updateMembership(membershipType.getId(), membershipType);
+            mbTypeStatus = membershipTypeService.updateMembership(membershipType.getId(), membershipType);
         } catch (EntityNotFoundException ex) {
             return ResponseEntity.status(404).body(null);
         }
